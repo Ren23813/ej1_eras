@@ -35,7 +35,7 @@ public class GenTickRand {
         valid1 = lista[0];
         valid2 = lista[1];
 
-        if (valid1 <= ticket1 && ticket1 <= valid2 ){
+        if (valid1 < ticket1 && ticket1 < valid2 ){
             return true;
         }
         else {
