@@ -1,15 +1,37 @@
+/**
+ * Esta clase representa un lugar de concierto con diferentes localidades y funciones relacionadas.
+ */
 public class LugarConcierto {
     private int boletosDisponiblesLocalidad1 = 20;
     private int boletosDisponiblesLocalidad5 = 20;
     private int boletosDisponiblesLocalidad10 = 20;
     private int dineroRecaudado = 0;
 
+    /**
+     * Verifica si la localidad proporcionada es válida.
+     *
+     * @param localidad La localidad que se va a verificar.
+     * @return {@code true} si la localidad es válida, {@code false} de lo contrario.
+     */
     public boolean esLocalidadValida(int localidad) {
         return localidad == 1 || localidad == 5 || localidad == 10;
     }
+
+    /**
+     * Obtiene el monto total recaudado por la venta de boletos.
+     *
+     * @return El monto total recaudado.
+     */
     public int obtenerDineroRecaudado() {
         return dineroRecaudado;
     }
+
+    /**
+     * Verifica si hay espacio disponible en una localidad específica.
+     *
+     * @param localidad La localidad para la que se verificará el espacio.
+     * @return {@code true} si hay espacio disponible, {@code false} de lo contrario.
+     */
     public boolean tieneEspacio(int localidad) {
         switch (localidad) {
             case 1:
@@ -23,6 +45,13 @@ public class LugarConcierto {
         }
     }
 
+    /**
+     * Verifica si hay suficientes boletos disponibles en una localidad específica.
+     *
+     * @param localidad La localidad para la que se verificarán los boletos.
+     * @param numBoletos El número de boletos requeridos.
+     * @return {@code true} si hay suficientes boletos disponibles, {@code false} de lo contrario.
+     */
     public boolean tieneSuficientesBoletos(int localidad, int numBoletos) {
         switch (localidad) {
             case 1:
@@ -36,6 +65,13 @@ public class LugarConcierto {
         }
     }
 
+    /**
+     * Verifica si una localidad es asequible según un presupuesto dado.
+     *
+     * @param localidad La localidad para la que se verificará la asequibilidad.
+     * @param presupuesto El presupuesto disponible.
+     * @return {@code true} si la localidad es asequible, {@code false} de lo contrario.
+     */
     public boolean esAsequible(int localidad, int presupuesto) {
         switch (localidad) {
             case 1:
@@ -49,6 +85,13 @@ public class LugarConcierto {
         }
     }
 
+    /**
+     * Vende una cantidad específica de boletos en una localidad determinada.
+     * Actualiza los boletos disponibles y el monto recaudado.
+     *
+     * @param localidad La localidad en la que se venderán los boletos.
+     * @param numBoletos El número de boletos a vender.
+     */
     public void venderBoletos(int localidad, int numBoletos) {
         switch (localidad) {
             case 1:
@@ -65,6 +108,15 @@ public class LugarConcierto {
         dineroRecaudado += precioTotal;
     }
 
+    /**
+     * Verifica si es posible comprar boletos con un código especial en una localidad determinada.
+     *
+     * @param localidad La localidad en la que se intentará comprar.
+     * @param numBoletos El número de boletos que se intentarán comprar.
+     * @param presupuesto El presupuesto disponible.
+     * @param codigoEspecial El código especial a utilizar.
+     * @return {@code true} si es posible comprar con el código especial, {@code false} de lo contrario.
+     */
     public boolean puedeComprarConCodigoEspecial(int localidad, int numBoletos, int presupuesto, int codigoEspecial) {
         if (esCodigoEspecial(codigoEspecial) && localidad == 10) {
             return tieneEspacio(localidad) && tieneSuficientesBoletos(localidad, numBoletos) && esAsequible(localidad, presupuesto);
@@ -72,6 +124,12 @@ public class LugarConcierto {
         return false;
     }
 
+    /**
+     * Vende boletos especiales utilizando un código especial.
+     *
+     * @param numBoletos El número de boletos a vender.
+     * @param codigoEspecial El código especial a utilizar.
+     */
     public void venderBoletosEspeciales(int numBoletos, int codigoEspecial) {
         int localidad = 10;
         int precioTotal = obtenerPrecioLocalidad(localidad) * numBoletos;
@@ -81,6 +139,12 @@ public class LugarConcierto {
         }
     }
 
+    /**
+     * Obtiene la cantidad de boletos disponibles en una localidad específica.
+     *
+     * @param localidad La localidad para la que se desea obtener la cantidad de boletos disponibles.
+     * @return La cantidad de boletos disponibles.
+     */
     public int obtenerBoletosDisponibles(int localidad) {
         switch (localidad) {
             case 1:
@@ -94,6 +158,12 @@ public class LugarConcierto {
         }
     }
 
+    /**
+     * Obtiene el precio de una localidad específica.
+     *
+     * @param localidad La localidad para la que se desea obtener el precio.
+     * @return El precio de la localidad.
+     */
     public int obtenerPrecioLocalidad(int localidad) {
         switch (localidad) {
             case 1:
@@ -129,9 +199,6 @@ public class LugarConcierto {
             b = fib;
             fib = a + b;
         }
-
         return false;
     }
-
-    
 }
